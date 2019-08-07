@@ -1,4 +1,4 @@
-package org.yatsiko.irens.util;
+package org.yatsiko.irens.utils;
 
 import java.util.Comparator;
 

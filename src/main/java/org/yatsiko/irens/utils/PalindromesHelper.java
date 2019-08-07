@@ -1,4 +1,4 @@
-package org.yatsiko.irens.util;
+package org.yatsiko.irens.utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,32 +18,6 @@ public class PalindromesHelper {
             range -= candidates.size();
             origin = incrementString(palindromes.get(palindromes.size() - 1), 0);
         }
-        /*String half = origin.substring(0, origin.length() / 2);
-        for (int i = 0; i < range; i++) {
-            String palindrome = getPalindrome(origin);
-            if (new StringComparator().compare(palindrome, origin) >= 0) {
-                palindromes.add(palindrome);
-            } else i--;
-            origin = palindrome;
-            *//*String palindrome;
-            if (origin.length() % 2 == 0) {
-                palindrome = half + reverseString(half);
-                half = incrementString(half, 0);
-            } else {
-                String s = incrementString(origin.substring(half.length(), half.length() + 1), 0);
-                palindrome = half + s + reverseString(half);
-            }
-            if (new StringComparator().compare(palindrome, origin) >= 0) {
-                palindromes.add(palindrome);
-            } else {
-                i--;
-            }
-            String oldOrigin = origin;
-            origin = incrementString(oldOrigin, 0);
-            if (origin.length() > oldOrigin.length()) {
-                half = origin.substring(0, origin.length() / 2);
-            }*//*
-        }*/
         return palindromes;
     }
 
