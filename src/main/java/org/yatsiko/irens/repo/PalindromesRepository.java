@@ -6,5 +6,4 @@ import org.yatsiko.irens.models.Palindrome;
 
 @Repository
 public interface PalindromesRepository extends JpaRepository<Palindrome, Integer> {
-    Palindrome getFirstByOrigin(String origin);
 }

@@ -61,16 +61,6 @@ public class PalindromesHelper {
         return list;
     }
 
-    public static String getPalindrome(String str) {
-        String half = str.substring(0, str.length() / 2);
-        if (str.length() % 2 == 0) {
-            return half + new StringBuilder(half).reverse().toString();
-        } else {
-            String s = incrementString(str.substring(0, (str.length() / 2) + 1), 0);
-            return half + s + new StringBuilder(half).reverse().toString();
-        }
-    }
-
     private static String reverseString(String str) {
         return new StringBuilder(str).reverse().toString();
     }
@@ -90,19 +80,6 @@ public class PalindromesHelper {
             sb.append("0");
         }
         return sb.toString();
-    }
-
-    public static boolean isPalindrome(String str) {
-        int middle = str.length() / 2;
-        String a = "", b = "";
-        if (str.length() % 2 == 0) {
-            a = str.substring(0, middle);
-            b = str.substring(middle);
-        } else {
-            a = str.substring(0, middle);
-            b = str.substring(middle + 1);
-        }
-        return a.equals(b);
     }
 }
 
