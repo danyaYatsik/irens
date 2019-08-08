@@ -6,6 +6,7 @@ import org.yatsiko.irens.models.Palindrome;
 import org.yatsiko.irens.repo.PalindromesRepository;
 import org.yatsiko.irens.utils.PalindromesHelper;
 
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -32,6 +33,8 @@ public class PalindromesService {
     }
 
     public List<Palindrome> getAll() {
-        return repository.findAll();
+        List<Palindrome> list = repository.findAll();
+        Collections.reverse(list);
+        return list;
     }
 }

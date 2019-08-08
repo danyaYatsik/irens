@@ -7,7 +7,7 @@ public class PalindromesHelper {
 
     public static List<String> getPalindromes(String origin, int range) {
         List<String> palindromes = new ArrayList<>();
-        while (palindromes.size() < range) {
+        while (0 < range) {
             List<String> candidates;
             if (origin.length() % 2 == 0) {
                candidates = getEvenLengthPlndrms(origin, range);
@@ -21,7 +21,7 @@ public class PalindromesHelper {
         return palindromes;
     }
 
-    public static List<String> getEvenLengthPlndrms(String origin, int range) {
+    private static List<String> getEvenLengthPlndrms(String origin, int range) {
         List<String> list = new ArrayList<>();
         StringComparator comp = new StringComparator();
         String half0 = origin.substring(0, origin.length() / 2);
@@ -31,14 +31,16 @@ public class PalindromesHelper {
             String palindrome = half + reverseString(half);
             if (comp.compare(palindrome, origin) >= 0) {
                 list.add(half + reverseString(half));
-                counter++;
+                if (++counter >= range) {
+                    break;
+                }
             }
             half = incrementString(half, 0);
         }
         return list;
     }
 
-    public static List<String> getOddLengthPlndrms(String origin, int range) {
+    private static List<String> getOddLengthPlndrms(String origin, int range) {
         List<String> list = new ArrayList<>();
         StringComparator comp = new StringComparator();
         String half0 = origin.substring(0, origin.length() / 2);
@@ -49,7 +51,9 @@ public class PalindromesHelper {
                 String palindrome = half + i + reverseString(half);
                 if (comp.compare(palindrome, origin) >= 0) {
                     list.add(palindrome);
-                    counter++;
+                    if (++counter >= range) {
+                        break;
+                    }
                 }
             }
             half = incrementString(half, 0);
@@ -71,7 +75,7 @@ public class PalindromesHelper {
         return new StringBuilder(str).reverse().toString();
     }
 
-    public static String incrementString(String base, int level) {
+    private static String incrementString(String base, int level) {
         if (base.endsWith("9")) {
             return incrementString(base.substring(0, base.length() - 1), level + 1);
         }

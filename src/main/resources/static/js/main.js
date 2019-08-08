@@ -1,18 +1,14 @@
-var $history = $("#history");
-
 var onShow = function (e) {
-    var $listItem = e.target.parentElement;
-    var $numberId = $listItem.querySelector(".number-id").textContent;
-    var $button = $listItem.querySelector("button");
-    console.log($button);
-    console.log($numberId);
-    console.log(e);
+    var $listItem = $(e.target.parentElement);
+    var $numberId = $listItem.find(".number-id").text();
+    var $button = $listItem.find("button");
     $.ajax({
-        type : "GET",
-        url : "/" + $numberId,
-        success : function (d) {
+        type: "GET",
+        url: "/" + $numberId,
+        success: function (d) {
             $button.remove();
-            $listItem.innerText = (d.origin + "min - " + d.min + ", max - " + d.max);
+            $listItem.append($("<p></p>").text("min - " + d.min));
+            $listItem.append($("<p></p>").text("max - " + d.max));
         }
     });
 };
@@ -22,10 +18,15 @@ $('#submit').on("click", function (e) {
     e.preventDefault();
     var $number = $("#number").val();
     var $range = $("#range").val();
-    var $listItem = $("<div class='list-group-item list-group-item-light'></div>").text($number + " - please, wait for calculation");
+    var $history = $("#history");
+    var $listItem = $("<div class='list-group-item list-group-item-light'></div>");
+    var $wait = $("<p></p>").text("Please, wait for calculation");
+    $listItem.append($("<p></p>").text($number));
+    $listItem.append($("<hr/>"));
+    $listItem.append($wait);
     $history.css("display", "inline");
     $history.after($listItem);
-    if (!($number === "" || $range === "")) {
+    if (/^\d+$/.test($number) && !($range === "")) {
         $.ajax({
             type: "POST",
             url: "/",
@@ -34,14 +35,13 @@ $('#submit').on("click", function (e) {
                 range: $range
             },
             success: function (data) {
-                console.log(data);
                 var $button = $("<button class='btn btn-primary-dark ml-2'></button>").text("Show");
                 $button.on("click", onShow);
-                $listItem.text(data.origin);
+                $wait.remove();
                 $listItem.append($("<span class='hidden number-id'></span>").text(data.id));
                 $listItem.append($button);
             },
-            error : function (data) {
+            error: function (data) {
                 $listItem.remove();
                 alert("looks like there is out of memory error on the server");
             }
