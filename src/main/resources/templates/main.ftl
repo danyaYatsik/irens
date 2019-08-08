@@ -1,7 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
 <head>
+    <meta charset="UTF-8" content="text/html">
     <title>Irens</title>
+    <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet"
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
@@ -10,30 +10,31 @@
 <body>
 <div class="container mt-5">
     <form method="post" action="/">
-        <div class="form-group col-4">
+        <div class="form-group col-5">
             <label class="">Number</label>
             <div>
-                <input type="text" name="number">
+                <input id="number" type="text" name="number">
             </div>
-            <label>Range</label>
+            <label>Number of palindromes</label>
             <div>
-                <input type="number" name="range">
+                <input id="range" type="number" name="range">
             </div>
-            <button class="btn btn-primary-dark mt-2" type="submit">Find</button>
-            <input type="hidden" name="_csrf" value=${_csrf.token}>
+            <button id="submit" class="btn btn-primary-dark mt-2" type="submit">Find</button>
+            <#--<input type="hidden" name="_csrf" value=${_csrf.token}>-->
 
         </div>
     </form>
-    <div class="col-4 ms-3">
-        <#list palindromes>
-            <h2>History</h2>
-            <#items as item>
-                <div class="list-group-item list-group-item-dark">
-                    Number - ${item.origin}, min - ${item.min}, max - ${item.max}</div>
-            </#items>
+    <div class="col-5">
+        <h2 id="history" <#if palindromes?size == 0>class="hidden"</#if>>History</h2>
+        <#list palindromes as item>
+            <div class="list-group-item list-group-item-light">
+                ${item.origin}
+                <span class="hidden number-id">${item.id}</span>
+                <button class="btn btn-primary-light ml-2">Show</button>
+            </div>
         </#list>
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="application/javascript" src="js/main.js"></script>
 </div>
-<script  src="/main.js"></script>
 </body>
-</html>

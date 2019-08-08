@@ -26,4 +26,12 @@ public class NumbersDto {
     public void setRange(int range) {
         this.range = range;
     }
+
+    @Override
+    public String toString() {
+        return "NumbersDto{" +
+                "number='" + number + '\'' +
+                ", range=" + range +
+                '}';
+    }
 }

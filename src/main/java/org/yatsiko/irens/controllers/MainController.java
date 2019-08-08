@@ -3,9 +3,7 @@ package org.yatsiko.irens.controllers;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.yatsiko.irens.dto.NumbersDto;
 import org.yatsiko.irens.models.Palindrome;
 import org.yatsiko.irens.services.PalindromesService;
@@ -21,18 +19,26 @@ public class MainController {
         this.service = service;
     }
 
-    @GetMapping()
+    @GetMapping("/")
     public String get(Model model) {
         model.addAttribute("palindromes", service.getAll());
         return "main";
     }
 
-    @PostMapping()
-    public String post(@Valid @ModelAttribute NumbersDto numbersDto, BindingResult bindingResult, Model model) {
+    @PostMapping("/")
+    @ResponseBody
+    public Palindrome post(@Valid @ModelAttribute NumbersDto numbersDto, BindingResult bindingResult) {
         if (!bindingResult.hasErrors()) {
             Palindrome palindrome = service.createPalindrome(numbersDto.getNumber(), numbersDto.getRange());
             service.savePalindrome(palindrome);
+            return palindrome;
         }
-        return "redirect:/main";
+        return null;
+    }
+
+    @GetMapping("/{id}")
+    @ResponseBody
+    public Palindrome getOne(@PathVariable Integer id) {
+        return service.getPalindrome(id);
     }
 }

@@ -27,8 +27,8 @@ public class PalindromesService {
         repository.save(palindrome);
     }
 
-    public Palindrome getPalindrome(String origin) {
-        return repository.getFirstByOrigin(origin);
+    public Palindrome getPalindrome(Integer id) {
+        return repository.getOne(id);
     }
 
     public List<Palindrome> getAll() {

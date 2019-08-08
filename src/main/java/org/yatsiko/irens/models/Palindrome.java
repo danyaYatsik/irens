@@ -27,6 +27,14 @@ public class Palindrome {
 
     private String min;
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public String getOrigin() {
         return origin;
     }
