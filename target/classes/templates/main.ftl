@@ -21,8 +21,6 @@
                     <input id="range" type="number" name="range">
                 </div>
                 <button id="submit" class="btn btn-primary-dark mt-2" type="submit">Find</button>
-                <#--<input type="hidden" name="_csrf" value=${_csrf.token}>-->
-
             </div>
         </form>
         <div class="col-4 offset-2">
@@ -33,7 +31,7 @@
                         ${item.origin}
                         <hr/>
                         <span class="hidden number-id">${item.id}</span>
-                        <button class="btn btn-primary-light ml-2">Show</button>
+                        <button class="btn btn-primary-light ml-2">Result</button>
                     </div>
                 </#list>
             </div>

@@ -1,0 +1,8 @@
+org\yatsiko\irens\controllers\MainController.class
+org\yatsiko\irens\IrensApplication.class
+org\yatsiko\irens\dto\NumbersDto.class
+org\yatsiko\irens\utils\PalindromesHelper.class
+org\yatsiko\irens\utils\StringComparator.class
+org\yatsiko\irens\repo\PalindromesRepository.class
+org\yatsiko\irens\services\PalindromesService.class
+org\yatsiko\irens\models\Palindrome.class

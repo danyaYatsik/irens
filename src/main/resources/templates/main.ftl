@@ -31,7 +31,7 @@
                         ${item.origin}
                         <hr/>
                         <span class="hidden number-id">${item.id}</span>
-                        <button class="btn btn-primary-light ml-2">Show</button>
+                        <button class="btn btn-primary-light ml-2">Result</button>
                     </div>
                 </#list>
             </div>

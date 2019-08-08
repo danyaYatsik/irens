@@ -26,7 +26,7 @@ $('#submit').on("click", function (e) {
     $listItem.append($wait);
     $history.css("display", "inline");
     $history.after($listItem);
-    if (/^\d+$/.test($number) && !($range === "")) {
+    if (/^[1-9]\d*$/.test($number) && parseInt($range) < 2147483648) {
         $.ajax({
             type: "POST",
             url: "/",
@@ -35,22 +35,34 @@ $('#submit').on("click", function (e) {
                 range: $range
             },
             success: function (data) {
-                var $button = $("<button class='btn btn-primary-dark ml-2'></button>").text("Show");
+                var $button = $("<button class='btn btn-primary-dark ml-2'></button>").text("Result");
                 $button.on("click", onShow);
                 $wait.remove();
                 $listItem.append($("<span class='hidden number-id'></span>").text(data.id));
                 $listItem.append($button);
             },
             error: function (data) {
+                if (!isHistoryPresented()) {
+                    $history.css("display", "none");
+                }
                 $listItem.remove();
-                alert("looks like there is out of memory error on the server");
+                alert("looks like there is an error on the server");
             }
         })
     } else {
+        if (!isHistoryPresented()) {
+            $history.css("display", "none");
+        }
         $listItem.remove();
         alert("Incorrect values");
     }
 });
+
+function isHistoryPresented() {
+    var $h = $(".list-group-item > button").length;
+    console.log($h);
+    return $h;
+}
 
 
 $(".list-group-item > button").on("click", onShow);
