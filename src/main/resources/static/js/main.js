@@ -26,7 +26,7 @@ $('#submit').on("click", function (e) {
     $listItem.append($wait);
     $history.css("display", "inline");
     $history.after($listItem);
-    if (/^[1-9]\d*$/.test($number) && parseInt($range) < 2147483648) {
+    if (/^[1-9]\d*$/.test($number) && parseInt($range) < 2147483648 && parseInt($range) > 0) {
         $.ajax({
             type: "POST",
             url: "/",
